@@ -1,0 +1,5 @@
+Frontend run steps:
+
+1. npm install
+2. create .env file with VITE_API_BASE=http://localhost:8000/api (or your deployed API)
+3. npm run dev
