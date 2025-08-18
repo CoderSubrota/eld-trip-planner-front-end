@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ROWS = [
   { key: 'off', label: 'OFF', y: 20 },
@@ -20,6 +20,8 @@ function segToRow(type) {
 }
 
 export default function ELDLog({ dayPlans }) {
+  const [daySegments, setDaySegments] = useState({})
+
   const days = []
   let dayCounter = 1
 
@@ -36,8 +38,12 @@ export default function ELDLog({ dayPlans }) {
   }
 
   const handleSegmentData = (day, data) => {
-    console.log(`Day ${day} segment data:`, data)
+    setDaySegments(prev => ({ ...prev, [day]: data }))
   }
+
+  useEffect(() => {
+    console.log('Latest segment data:', daySegments)
+  }, [daySegments])
 
   return (
     <section>
@@ -81,7 +87,7 @@ function DayLog({ day, segments, onData }) {
 
   useEffect(() => {
     onData?.(day, segmentData)
-  }, [day, segmentData, onData])
+  }, [day, segments]) 
 
   return (
     <div style={{
