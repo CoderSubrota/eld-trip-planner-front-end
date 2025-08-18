@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API = import.meta.env.VITE_API_BASE || 'http://localhost:8000/'
+const API = import.meta.env.VITE_API_BASE || 'https://eld-planner-back-end.onrender.com/'
 
 export default function TripForm({onPlanned}){
   const [form, setForm] = useState({
